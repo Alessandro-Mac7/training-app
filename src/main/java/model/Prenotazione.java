@@ -4,9 +4,11 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
 
+@Entity
+@Table(name="prenotazione")
 public class Prenotazione {
 
-    private int id;
+    private Long id;
     private Date data_inizio;
     private Date data_fine;
     private int approvata;
@@ -16,20 +18,9 @@ public class Prenotazione {
     private Mezzo mezzo;
     private BuonoSconto buono;
 
-    Prenotazione(){}
+    public Prenotazione(){}
 
-    public Prenotazione(Date data_inizio, Date data_fine, int approvata, Set<Evento> eventi, Utente utente, Mezzo mezzo, BuonoSconto buono) {
-        super();
-        this.data_inizio = data_inizio;
-        this.data_fine = data_fine;
-        this.approvata = approvata;
-        this.eventi = eventi;
-        this.utente = utente;
-        this.mezzo = mezzo;
-        this.buono = buono;
-    }
-
-    public Prenotazione(int id, Date data_inizio, Date data_fine, int approvata, Set<Evento> eventi, Utente utente, Mezzo mezzo, BuonoSconto buono) {
+    public Prenotazione(Long id, Date data_inizio, Date data_fine, int approvata, Set<Evento> eventi, Utente utente, Mezzo mezzo, BuonoSconto buono) {
         super();
         this.id = id;
         this.data_inizio = data_inizio;
@@ -44,14 +35,14 @@ public class Prenotazione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idprenotazione")
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name="data_inizio")
+    @Column(name="data_inizio", nullable = false)
     public Date getData_inizio() {
         return data_inizio;
     }
@@ -59,7 +50,7 @@ public class Prenotazione {
         this.data_inizio = data_inizio;
     }
 
-    @Column(name="data_fine")
+    @Column(name="data_fine", nullable = false)
     public Date getData_fine() {
         return data_fine;
     }

@@ -4,32 +4,26 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
 
+@Entity
+@Table(name="utente")
 public class Utente {
 
-    private int id;
+    private Long id;
     private String nome;
+
     private String cognome;
     private Date data;
     private String password;
     private String username;
+    private String salt;
     private Tipologia tipologia;
     private Set<Prenotazione> prenotazioni;
 
-    Utente(){}
+    public Utente(){}
 
-    Utente(String nome, String cognome, Date data, String password, String username, Tipologia tipologia){
+    public Utente(Long id, String nome, String cognome, Date data, String password, String username, Tipologia tipologia){
         super();
-        this.nome = nome;
-        this.cognome = cognome;
-        this.data = data;
-        this.password = password;
-        this.username = username;
-        this.tipologia = tipologia;
-    }
-
-    Utente(int idutente, String nome, String cognome, Date data, String password, String username, Tipologia tipologia){
-        super();
-        this.id = idutente;
+        this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.data = data;
@@ -41,14 +35,14 @@ public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idutente")
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int idutente) {
+    public void setId(Long idutente) {
         this.id = idutente;
     }
 
-    @Column(name="nome")
+    @Column(name="nome", nullable = false, columnDefinition = "varchar(45)")
     public String getNome() {
         return nome;
     }
@@ -56,7 +50,7 @@ public class Utente {
         this.nome = nome;
     }
 
-    @Column(name="cognome")
+    @Column(name="cognome", nullable = false, columnDefinition = "varchar(45)")
     public String getCognome() {
         return cognome;
     }
@@ -72,7 +66,7 @@ public class Utente {
         this.data = data;
     }
 
-    @Column(name="password")
+    @Column(name="password", nullable = false)
     public String getPassword() {
         return password;
     }
@@ -80,7 +74,7 @@ public class Utente {
         this.password = password;
     }
 
-    @Column(name="username")
+    @Column(name="username", nullable = false, unique = true, columnDefinition = "varchar(45)")
     public String getUsername() {
         return username;
     }
@@ -88,7 +82,15 @@ public class Utente {
         this.username = username;
     }
 
-    @OneToOne( fetch= FetchType.EAGER )
+    @Column(name="salt")
+    public String getSalt() {
+        return salt;
+    }
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    @ManyToOne( fetch= FetchType.EAGER )
     @JoinColumn( name="idtipologia" )
     public Tipologia getTipologia() {
         return tipologia;

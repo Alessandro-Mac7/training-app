@@ -1,11 +1,10 @@
-package dao;
+package persistence;
 
 import model.Categoria;
 
-
 import java.util.List;
 
-public class CategoriaDAO extends AbstractDAO{
+public class CategoriaDAO extends AbstractDAO {
 
     public void create(Categoria categoria) {
         super.saveOrUpdate(categoria);
@@ -15,7 +14,7 @@ public class CategoriaDAO extends AbstractDAO{
         super.delete(categoria);
     }
 
-    public Categoria find(int id)  {
+    public Categoria find(Long id)  {
         return (Categoria) super.find(Categoria.class, id);
     }
 

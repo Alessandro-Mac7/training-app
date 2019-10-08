@@ -8,19 +8,13 @@ import java.util.Set;
 @Entity
 @Table(name="categoria")
 public class Categoria {
-    private int id;
+    private Long id;
     private String nome;
     private Set<Mezzo> mezzi;
 
-    Categoria(){}
+    public Categoria(){}
 
-    Categoria(String nome, Set<Mezzo> mezzi){
-        super();
-        this.nome = nome;
-        this.mezzi = mezzi;
-    }
-
-    Categoria(int idcategoria, String nome, Set<Mezzo> mezzi){
+    public Categoria(Long idcategoria, String nome, Set<Mezzo> mezzi){
         super();
         this.id = idcategoria;
         this.nome = nome;
@@ -30,14 +24,14 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idCategoria")
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name="nome")
+    @Column(name="nome", nullable = false, columnDefinition = "varchar(45)")
     public String getNome() {
         return nome;
     }

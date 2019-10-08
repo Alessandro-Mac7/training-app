@@ -2,20 +2,16 @@ package model;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name="evento")
 public class Evento {
-    private int id;
+    private Long id;
     private String tipo;
     private Prenotazione prenotazione;
 
-    Evento(){}
+    public Evento(){}
 
-    public Evento(String tipo, Prenotazione prenotazione) {
-        super();
-        this.tipo = tipo;
-        this.prenotazione = prenotazione;
-    }
-
-    public Evento(int id, String tipo, Prenotazione prenotazione) {
+    public Evento(Long id, String tipo, Prenotazione prenotazione) {
         super();
         this.id = id;
         this.tipo = tipo;
@@ -25,14 +21,14 @@ public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idevento")
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name="tipo")
+    @Column(name="tipo", nullable = false, columnDefinition = "varchar(45)")
     public String getTipo() {
         return tipo;
     }

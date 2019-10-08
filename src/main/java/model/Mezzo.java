@@ -4,7 +4,10 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
 
+@Entity
+@Table(name="mezzo")
 public class Mezzo {
+    private Long id;
     private String targa;
     private String casa_costruttrice;
     private String modello;
@@ -12,9 +15,9 @@ public class Mezzo {
     private Categoria categoria;
     private Set<Prenotazione> prenotazioni;
 
-    Mezzo(){}
+    public Mezzo(){}
 
-    Mezzo(String targa, String casa_costruttrice, String modello, Date anno_immatricolazione, Categoria categoria){
+    public Mezzo(String targa, String casa_costruttrice, String modello, Date anno_immatricolazione, Categoria categoria){
         super();
         this.targa = targa;
         this.casa_costruttrice = casa_costruttrice;
@@ -24,7 +27,16 @@ public class Mezzo {
     }
 
     @Id
-    @Column(name="targa")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idmezzo")
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Column(name="targa", columnDefinition = "varchar(45)")
     public String getTarga() {
         return targa;
     }
@@ -32,7 +44,7 @@ public class Mezzo {
         this.targa = targa;
     }
 
-    @Column(name="casa_costruttrice")
+    @Column(name="casa_costruttrice", columnDefinition = "varchar(45)")
     public String getCasa_costruttrice() {
         return casa_costruttrice;
     }
@@ -40,7 +52,7 @@ public class Mezzo {
         this.casa_costruttrice = casa_costruttrice;
     }
 
-    @Column(name="modello")
+    @Column(name="modello", columnDefinition = "varchar(45)")
     public String getModello() {
         return modello;
     }

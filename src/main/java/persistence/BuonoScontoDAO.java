@@ -1,4 +1,4 @@
-package dao;
+package persistence;
 
 import model.BuonoSconto;
 
@@ -14,7 +14,7 @@ public class BuonoScontoDAO extends AbstractDAO {
         super.delete(buonoSconto);
     }
 
-    public BuonoSconto find(int id)  {
+    public BuonoSconto find(Long id)  {
         return (BuonoSconto) super.find(BuonoSconto.class, id);
     }
 

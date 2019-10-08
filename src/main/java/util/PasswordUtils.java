@@ -32,7 +32,7 @@ public class PasswordUtils {
             SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             return skf.generateSecret(spec).getEncoded();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            throw new AssertionError("Error while hashing a password: " + e.getMessage(), e);
+            throw new AssertionError("ERRORE: " + e.getMessage(), e);
         } finally {
             spec.clearPassword();
         }

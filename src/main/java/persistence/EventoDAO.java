@@ -1,7 +1,6 @@
-package dao;
+package persistence;
 
 import model.Evento;
-
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class EventoDAO extends AbstractDAO{
         super.delete(evento);
     }
 
-    public Evento find(int id)  {
+    public Evento find(Long id)  {
         return (Evento) super.find(Evento.class, id);
     }
 

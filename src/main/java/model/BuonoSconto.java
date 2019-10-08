@@ -2,20 +2,16 @@ package model;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name="buoni_sconto")
 public class BuonoSconto {
-    private int id;
+    private Long id;
     private int importo;
     private Prenotazione prenotazione;
 
-    BuonoSconto(){}
+    public BuonoSconto(){}
 
-    public BuonoSconto(int importo, Prenotazione prenotazione) {
-        super();
-        this.importo = importo;
-        this.prenotazione = prenotazione;
-    }
-
-    public BuonoSconto(int id, int importo, Prenotazione prenotazione) {
+    public BuonoSconto(Long id, int importo, Prenotazione prenotazione) {
         super();
         this.id = id;
         this.importo = importo;
@@ -25,20 +21,21 @@ public class BuonoSconto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idbuoni_sconto")
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setId(Long id) { this.id = id;
     }
 
-    @Column(name="importo")
+    @Column(name="importo", nullable = false)
     public int getImporto() {
         return importo;
     }
     public void setImporto(int importo) {
         this.importo = importo;
     }
+
+
 
     @OneToOne( fetch= FetchType.EAGER )
     @JoinColumn( name="idprenotazione" )

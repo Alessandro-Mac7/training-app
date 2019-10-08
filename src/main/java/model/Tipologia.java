@@ -2,24 +2,21 @@ package model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
+@Entity
+@Table(name="tipologia")
 public class Tipologia {
 
-    private int id;
+    private Long id;
     private String nome;
-    private Utente utente;
+    private Set<Utente> utente;
 
-    Tipologia(){}
+    public Tipologia(){}
 
-    Tipologia(String nome, Utente utente){
+    public Tipologia(Long id, String nome, Set<Utente> utente){
         super();
-        this.nome = nome;
-        this.utente = utente;
-    }
-
-    Tipologia(int idtipologia, String nome, Utente utente){
-        super();
-        this.id = idtipologia;
+        this.id = id;
         this.nome = nome;
         this.utente = utente;
     }
@@ -27,14 +24,14 @@ public class Tipologia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idtipologia")
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Column(name="nome")
+    @Column(name="nome", nullable = false, unique = true, columnDefinition = "varchar(45)")
     public String getNome() {
         return nome;
     }
@@ -42,12 +39,11 @@ public class Tipologia {
         this.nome = nome;
     }
 
-    @OneToOne( mappedBy = "tipologia" )
-    public Utente getUtente() {
+    @OneToMany( mappedBy = "tipologia" )
+    public Set<Utente> getUtente() {
         return utente;
     }
-
-    public void setUtente(Utente utente) {
+    public void setUtente(Set<Utente> utente) {
         this.utente = utente;
     }
 }
