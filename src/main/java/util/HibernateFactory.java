@@ -83,7 +83,7 @@ public class HibernateFactory {
         settings.put(Environment.USER, "root");
         settings.put(Environment.PASS, "root");
         settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-        settings.put(Environment.SHOW_SQL, "false");
+        settings.put(Environment.SHOW_SQL, "true");
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
         settings.put(Environment.HBM2DDL_AUTO, "update");
 

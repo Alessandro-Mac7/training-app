@@ -53,7 +53,7 @@ h1 {
 
 #sidebar-wrapper {
     color: whitesmoke;
-    background: #9560fb;
+    background: rgba(9, 5, 17, 0.93);
 
     min-height: 100vh;
     margin-left: -15rem;
@@ -76,15 +76,15 @@ h1 {
 
 .list-group-mine .list-group-item {
     color: whitesmoke;
-    background-color: #9560fb;
+    background-color: rgba(9, 5, 17, 0.93);
     border: none;
 }
 
 .list-group-mine .list-group-item:hover {
-    background-color: #aca9ff;
+    background-color: rgba(12, 8, 24, 0.39);
 }
 .list-group-mine .list-group-item.active {
-    background-color: #aca9ff;
+    background-color: rgba(12, 8, 24, 0.39);
 }
 
 .bg-side{

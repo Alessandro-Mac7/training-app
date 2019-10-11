@@ -13,18 +13,18 @@
 <div class="container">
 
     <!-- Jumbotron Header -->
-    <header class="jumbotron text-center my-4">
-        <h2>Ciao ${loginedUser.nome}&ensp;${loginedUser.cognome}!</h2>
-        <a href="logout" ><i class="fas fa-sign-out-alt"></i> Esci</a>
+    <header class="jumbotron my-4">
+        <h1 class="display-3">Ciao ${loginedUser.nome} &ensp;${loginedUser.cognome}!</h1>
     </header>
 
+    <!-- Page Features -->
     <div class="row pt-4">
         <div class="col-sm-6">
             <h4>Le mie prenotazioni</h4>
         </div>
         <div class="col-sm-6 text-right">
             <button type="button" class="btn btn-info" data-toggle="modal" data-target=".insPrenotazioneModal" style="width: 30%;margin: 1px;">
-                <i class="fas fa-plus"></i>&ensp;Nuova</button>
+                <i class="fas fa-plus"></i>&ensp;Nuovo</button>
         </div>
     </div>
 
@@ -53,7 +53,7 @@
 
         </c:if>
 
-            <c:if test="${ empty editprenotazione}">
+        <c:if test="${ empty editprenotazione}">
 
             <c:if test="${not empty prenotazioni}">
                 <table class="table table-hover">
@@ -71,12 +71,7 @@
                         <tr>
                             <td>${prenotazione.data_inizio}</td>
                             <td>${prenotazione.data_fine}</td>
-                            <c:if test="${prenotazione.approvata == 0}">
-                                <td style="color: darkred;"><i class="fas fa-exclamation-circle"></i></td>
-                            </c:if>
-                            <c:if test="${prenotazione.approvata == 1}">
-                                <td style="color: green;"><i class="fas fa-check-circle"></i></td>
-                            </c:if>
+                            <td>${prenotazione.approvata}</td>
                             <td>${prenotazione.mezzo.modello}&ensp;${prenotazione.mezzo.targa}</td>
                             <td><a href="prenotazioni?action=edit&Id=${prenotazione.id}" data-toggle="tooltip" data-placement="top" title="Modifica prenotazione"  style="cursor:pointer; "><i class="fas fa-edit"></i></a>&nbsp;
                                 <a class="deletePrenotazione" href="javascript:void(0);"  data-id=${prenotazione.id} data-toggle="tooltip" data-placement="top" title="Elimina prenotazione" style="cursor:pointer; "><i class="fas fa-trash-alt"></i></a></td>
@@ -88,7 +83,7 @@
 
             <c:if test="${ empty prenotazioni}">
                 <div class="col-sm-12 text-center">
-                    <h4 style="color: gray">Nessun Prenotazione presente!</h4>
+                    <h4>Nessun Prenotazione presente!</h4>
                 </div>
             </c:if>
 
@@ -107,12 +102,12 @@
             </div>
             <div class="modal-body">
                 <form class="form-signin insPrenotazioneForm" action="" method="post">
-                    <input type="date" class="form-control" name="data_inizio"  required autofocus>
-                    <input type="date" class="form-control" name="data_fine"  required>
-                    <input type="text" class="form-control" name="utente" value="${loginedUser.id}" disabled>
+                    <input type="text" class="form-control" name="dataInizio" placeholder="Nome" required autofocus>
+                    <input type="text" class="form-control" name="dataFine" placeholder="Cognome" required>
+                    <input type="date" class="form-control" name="utente" value="${loginedUser.username}" disabled>
                     <select class="form-control" name="mezzo">
                         <c:forEach items="${mezzi}" var="mezzo">
-                            <option value="${mezzo.id}">${mezzo.modello}&ensp;${mezzo.targa}</option>
+                            <option value="${mezzo.id}">${mezzo.modello}&ensp;${mezzo.modello}</option>
                         </c:forEach>
                     </select>
                     <button class="btn btn-lg btn-success btn-block" type="submit">Prenota</button>

@@ -1,12 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="pagina" value="${requestScope['javax.servlet.forward.request_uri']}" />
+
 <!-- Sidebar -->
 <div class="bg-side border-right" id="sidebar-wrapper">
     <div class="sidebar-heading">Car Rental </div>
     <div class="list-group list-group-mine">
-        <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action ">Veicoli</a>
-        <a href="#" class="list-group-item list-group-item-action ">Clienti</a>
-        <a href="#" class="list-group-item list-group-item-action ">Prenotazioni</a>
+        <a href="admin-home" class="list-group-item list-group-item-action ${pagina.endsWith('/admin-home') ? 'active' : ''}">Dashboard</a>
+        <a href="mezzi" class="list-group-item list-group-item-action ${pagina.endsWith('/mezzi') ? 'active' : ''}">Parco auto</a>
+        <a href="buonisconto" class="list-group-item list-group-item-action ${pagina.endsWith('/buonisconto') ? 'active' : ''}">Codici sconto</a>
+        <a href="prenotazioni" class="list-group-item list-group-item-action ${pagina.endsWith('/prenotazioni') ? 'active' : ''}">Prenotazioni</a>
     </div>
 </div>
 <!-- /#sidebar-wrapper -->

@@ -44,7 +44,7 @@ public class AbstractDAO {
         Object obj = null;
         try {
             startOperation();
-            obj = session.load(model, id);
+            obj = session.get(model, id);
             tx.commit();
         } catch (HibernateException e) {
             handleException(e);

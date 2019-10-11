@@ -14,8 +14,8 @@ public class MezzoDAO extends AbstractDAO {
         super.delete(mezzo);
     }
 
-    public Mezzo find(String id) {
-        return null;
+    public Mezzo find(Long id) {
+        return (Mezzo) super.find(Mezzo.class, id);
     }
 
     public void update(Mezzo mezzo) {

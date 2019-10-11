@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-    $("#btn-signup").on('click', function(){
-        $("#signup-modal").modal();
+    $("#btnSignup").on('click', function(){
+        $("#signupModal").modal();
     });
     
-    $("#signup-form").on('submit', function(e) {
+    $("#signupForm").on('submit', function(e) {
         e.preventDefault();
-        var form = $('#signup-form').serialize();
+        var form = $('#signupForm').serialize();
 
         registerUser(form);
     })
@@ -20,14 +20,16 @@ function registerUser(form) {
         url: 'sign-up',
         data: form,
         success: function(data) {
-            $('#signup-modal').modal('hide');
-            $('#modal-response-title').text("Successo");
-            $('#modal-response-body').text("Utente registrato con successo!");
-            $('#success-modal').modal();
+            $('#signupModal').modal('hide');
+            $("#modalColorHeader").css("background-color", "green");
+            $('#modalResponseTitle').text("Successo");
+            $('#modalResponseBody').text("Utente registrato con successo!");
+            $('#successModal').modal();
         }, error: function (request, status, error) {
-            $('#modal-response-title').text("Errore");
-            $('#modal-response-body').text("Utente non registrato!");
-            $('#success-modal').modal();
+            $("#modalColorHeader").css("background-color", "red");
+            $('#modalResponseTitle').text("Errore");
+            $('#modalResponseBody').text("Utente non registrato!");
+            $('#successModal').modal();
         }
     });
 }

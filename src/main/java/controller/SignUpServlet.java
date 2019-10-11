@@ -36,6 +36,10 @@ public class SignUpServlet extends HttpServlet {
         }
 
         Utente utente = new Utente();
+
+        if(request.getParameter("id")!=null)
+            utente.setId(Long.parseLong(request.getParameter("id")));
+
         utente.setCognome(request.getParameter("surname"));
         utente.setData(new java.sql.Date(date.getTime()));
         utente.setNome(request.getParameter("name"));

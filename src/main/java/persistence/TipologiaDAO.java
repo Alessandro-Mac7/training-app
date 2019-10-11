@@ -4,6 +4,7 @@ import model.Tipologia;
 import org.hibernate.HibernateException;
 import org.hibernate.query.Query;
 import util.HibernateFactory;
+import util.JpaResultHelper;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class TipologiaDAO extends AbstractDAO {
             super.startOperation();
             Query query = this.session.createQuery("from Tipologia where nome = :name ");
             query.setParameter("name",name);
-            tipologia = (Tipologia) query.getSingleResult();
+            tipologia = (Tipologia) JpaResultHelper.getSingleResultOrNull(query);
             tx.commit();
         } catch (HibernateException e) {
             handleException(e);

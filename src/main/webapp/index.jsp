@@ -1,6 +1,7 @@
 <html>
 <head lang="it">
-    <jsp:include page="WEB-INF/views/parts/_header.jsp"></jsp:include>
+    <jsp:include page="WEB-INF/views/parts/_header.jsp"/>
+
     <title>Login</title>
 </head>
 
@@ -9,17 +10,18 @@
     <form class="form-signin" action="auth" method="post">
         <img class="mb-4" src="img/logo.png" alt="" width="300">
         <label for="inputEmail" class="sr-only">Email</label>
+        <label class="animated shake delay-1s text-center" style="color: red">${errorMessage}</label>
         <input type="email" id="inputEmail" class="form-control" name="mail" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entra</button>
-        <button class="btn btn-lg btn-success btn-block" id="btn-signup" type="button">Registrati</button>
+        <button class="btn btn-lg btn-success btn-block" id="btnSignup" type="button">Registrati</button>
 
     </form>
 </div>
 
 <!-- Modal Registrazione -->
-<div class="modal fade" id="signup-modal">
+<div class="modal fade" id="signupModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -27,7 +29,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form class="form-signin" id="signup-form" method="post">
+                <form class="form-signin" id="signupForm" method="post">
                     <div class="form-group">
                         <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
                     </div>
@@ -56,16 +58,16 @@
 </div>
 
 
-<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="success-modal" aria-hidden="true">
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="success-modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: forestgreen; color: white">
-                <h5 class="modal-title" id="modal-response-title">Successo</h5>
+            <div class="modal-header" id="modalColorHeader" style="background-color: forestgreen; color: white">
+                <h5 class="modal-title" id="modalResponseTitle">Successo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="modal-response-body">
+            <div class="modal-body" id="modalResponseBody">
                 <h4>Utente registrato con successo!</h4>
             </div>
         </div>
