@@ -18,6 +18,15 @@
         <a href="logout" ><i class="fas fa-sign-out-alt"></i> Esci</a>
     </header>
 
+    <c:if test="${not empty error}">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Errore!</strong> ${error}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
+
     <div class="row pt-4">
         <div class="col-sm-6">
             <h4>Le mie prenotazioni</h4>
@@ -47,7 +56,7 @@
                     </c:forEach>
                 </select>
                 <button class="btn btn-lg btn-warning btn-block mt-2" type="submit">Modifica prenotazione</button>
-                <a href="prenotazioni" class="btn btn-lg btn-info btn-block mt-2" type="submit">Indietro</a>
+                <a href="customer-home" class="btn btn-lg btn-info btn-block mt-2" type="submit">Indietro</a>
             </form>
         </div>
 
@@ -56,7 +65,9 @@
             <c:if test="${ empty editprenotazione}">
 
             <c:if test="${not empty prenotazioni}">
-                <table class="table table-hover">
+                <input type="text" class="form-control" id="filterPrenotazioniTable">
+
+                <table class="table table-hover" id="prenotazioniTable">
                     <thead>
                     <tr>
                         <th scope="col">Data inizio</th>
@@ -78,7 +89,7 @@
                                 <td style="color: green;"><i class="fas fa-check-circle"></i></td>
                             </c:if>
                             <td>${prenotazione.mezzo.modello}&ensp;${prenotazione.mezzo.targa}</td>
-                            <td><a href="prenotazioni?action=edit&Id=${prenotazione.id}" data-toggle="tooltip" data-placement="top" title="Modifica prenotazione"  style="cursor:pointer; "><i class="fas fa-edit"></i></a>&nbsp;
+                            <td><a href="prenotazioni?action=editCustomer&Id=${prenotazione.id}" data-toggle="tooltip" data-placement="top" title="Modifica prenotazione"  style="cursor:pointer; "><i class="fas fa-edit"></i></a>&nbsp;
                                 <a class="deletePrenotazione" href="javascript:void(0);"  data-id=${prenotazione.id} data-toggle="tooltip" data-placement="top" title="Elimina prenotazione" style="cursor:pointer; "><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                     </c:forEach>
@@ -98,6 +109,10 @@
 
 </div>
 <!-- /.container -->
+
+
+
+
 <div class="modal fade insPrenotazioneModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -156,6 +171,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Scripts -->
 <jsp:include page="parts/_footer.jsp"></jsp:include>

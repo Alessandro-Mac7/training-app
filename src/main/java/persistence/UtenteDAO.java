@@ -79,6 +79,7 @@ public class UtenteDAO extends AbstractDAO {
             Query query = this.session.createQuery("FROM Utente u, Prenotazione p" +
                     "                                  where :id = p.utente.id and " +
                     "                                  p.id in (select e.prenotazione.id from Evento as e )");
+            query.setParameter("id",id);
             List<Utente> utenti = query.getResultList();
             if(!utenti.isEmpty())
                 moroso=true;

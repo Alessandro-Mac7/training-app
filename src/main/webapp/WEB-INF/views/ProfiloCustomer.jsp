@@ -12,82 +12,20 @@
 <!-- Page Content -->
 <div class="container">
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-        <h1 class="display-3">Ciao ${loginedUser.nome} &ensp;${loginedUser.cognome}!</h1>
-    </header>
-
     <!-- Page Features -->
-    <div class="row pt-4">
-        <div class="col-sm-6">
-            <h4>Le mie prenotazioni</h4>
-        </div>
-        <div class="col-sm-6 text-right">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target=".insPrenotazioneModal" style="width: 30%;margin: 1px;">
-                <i class="fas fa-plus"></i>&ensp;Nuovo</button>
-        </div>
-    </div>
-
-    <div class="row pt-4">
+    <div class="row mt-5" >
         <div class="col-sm-12 text-center">
-            <c:if test="${not empty editprenotazione}">
-            <form class="form-signin editPrenotazioneForm" action="prenotazioni" method="post">
-                <input type="text" class="form-control" name="id" value="${editprenotazione.id}" disabled>
-                <input type="date" class="form-control" name="data_inizio" value="${editprenotazione.data_inizio}" placeholder="Data inizio">
-                <input type="date" class="form-control" name="data_fine" value="${editprenotazione.data_fine}" placeholder="Data fine">
-                <input type="date" class="form-control" name="approvata" value="${editprenotazione.approvata}" placeholder="Approvata">
-                <select class="form-control" name="utenti">
-                    <c:forEach items="${utenti}" var="utente">
-                        <option value="${utente.id}">${utente.nome}&ensp;${utente.cognome}</option>
-                    </c:forEach>
-                </select>
-                <select class="form-control" name="mezzi">
-                    <c:forEach items="${mezzi}" var="mezzo">
-                        <option value="${mezzo.id}">${mezzo.modello}&ensp;${mezzo.targa}</option>
-                    </c:forEach>
-                </select>
-                <button class="btn btn-lg btn-warning btn-block mt-2" type="submit">Modifica prenotazione</button>
-                <a href="prenotazioni" class="btn btn-lg btn-info btn-block mt-2" type="submit">Indietro</a>
+            <form class="form-signin editCustomerForm" action="sign-up" method="post">
+                <input type="text" class="form-control" name="id" value="${loginedUser.id}" disabled>
+                <input type="text" class="form-control" name="name" value="${loginedUser.nome}" placeholder="Nome" >
+                <input type="text" class="form-control" name="surname" value="${loginedUser.cognome}" placeholder="Cognome" >
+                <input type="date" class="form-control" name="born-date" value="${loginedUser.data}" placeholder="Data nascita" >
+                <input type="email" class="form-control" name="email" value="${loginedUser.username}" placeholder="Email" >
+                <input type="password" class="form-control" name="pwd" placeholder="Password" >
+                <input class="form-check-input" type="checkbox" name="superuser" style="visibility:hidden;">
+                <button class="btn btn-lg btn-success btn-block" type="submit">Modifica profilo</button>
             </form>
         </div>
-
-        </c:if>
-
-        <c:if test="${ empty editprenotazione}">
-
-            <c:if test="${not empty prenotazioni}">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Data inizio</th>
-                        <th scope="col">Data fine</th>
-                        <th scope="col">Approvata</th>
-                        <th scope="col">Mezzo</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${prenotazioni}" var="prenotazione">
-                        <tr>
-                            <td>${prenotazione.data_inizio}</td>
-                            <td>${prenotazione.data_fine}</td>
-                            <td>${prenotazione.approvata}</td>
-                            <td>${prenotazione.mezzo.modello}&ensp;${prenotazione.mezzo.targa}</td>
-                            <td><a href="prenotazioni?action=edit&Id=${prenotazione.id}" data-toggle="tooltip" data-placement="top" title="Modifica prenotazione"  style="cursor:pointer; "><i class="fas fa-edit"></i></a>&nbsp;
-                                <a class="deletePrenotazione" href="javascript:void(0);"  data-id=${prenotazione.id} data-toggle="tooltip" data-placement="top" title="Elimina prenotazione" style="cursor:pointer; "><i class="fas fa-trash-alt"></i></a></td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </c:if>
-
-            <c:if test="${ empty prenotazioni}">
-                <div class="col-sm-12 text-center">
-                    <h4>Nessun Prenotazione presente!</h4>
-                </div>
-            </c:if>
-
-        </c:if>
     </div>
     <!-- /.row -->
 
@@ -132,25 +70,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirm-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" >Conferma</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body modalResponseBody">
-                <p>Vuoi eliminare la prenotazione?</p>
-            </div>
-            <div class="modal-footer">
-                <button id="deleteButtonPrenotazione" type="button " class="btn btn-primary" data-id="">Elimina</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- Scripts -->
 <jsp:include page="parts/_footer.jsp"></jsp:include>

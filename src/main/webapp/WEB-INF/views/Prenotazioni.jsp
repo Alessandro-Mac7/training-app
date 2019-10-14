@@ -57,7 +57,8 @@
                 <c:if test="${ empty editprenotazione}">
 
                     <c:if test="${not empty prenotazioni}">
-                        <table class="table table-hover">
+                        <input type="text" class="form-control" id="filterPrenotazioniTable">
+                        <table class="table table-hover" id="prenotazioniTable">
                             <thead>
                             <tr>
                                 <th scope="col">Data inizio</th>

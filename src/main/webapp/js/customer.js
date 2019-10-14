@@ -2,6 +2,22 @@ $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip();
 
+    $("#filterPrenotazioniTable").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#prenotazioniTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#filterMezziTable").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#mezziTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#errorModal").modal();
+
     // INS Form
     $(".insPrenotazioneForm").on('submit', function(e) {
         e.preventDefault();
@@ -116,7 +132,7 @@ function editPrenotazione(form){
 function deletePrenotazione(id) {
     $.ajax({
         type: "get",
-        url: 'prenotazioni?action=delete&Id='+id,
+        url: 'prenotazioni?action=deleteCustomer&Id='+id,
         success: function(data) {
             $('.confirmModal').modal('hide');
             $(".modalColorHeader").css("background-color", "green");

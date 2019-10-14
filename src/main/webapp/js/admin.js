@@ -4,6 +4,35 @@ $(document).ready(function(){
 
     $('.collapse').collapse('show');
 
+    $("#filterPrenotazioniTable").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#prenotazioniTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#filterMezziTable").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#mezziTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#filterCustomerTable").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#customerTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+
+
+    $(".approvaButton").on('click', function (t) {
+        var id = $(".approvaButton").data("id");
+        approva(id);
+    });
+
+
     $('.showCollapsePrenotazioni').on('click' , function (t) {
         $('#collapsePrenotazione').collapse('toggle');
     });
@@ -328,6 +357,25 @@ function editPrenotazione(form){
             $(".modalColorHeader").css("background-color", "red");
             $('.modalResponseTitle').text("Errore");
             $('.modalResponseBody').text("Prenotazione non modificata!");
+            $('.successModal').modal();
+        }
+    });
+}
+
+function approva(id) {
+    $.ajax({
+        type: "POST",
+        url: 'prenotazioni',
+        data: {'action':'approva', 'Id':id},
+        success: function(data) {
+            $(".modalColorHeader").css("background-color", "green");
+            $('.modalResponseTitle').text("Successo");
+            $('.modalResponseBody').text("Prenotazione approvata con successo!");
+            $('.successModal').modal();
+        }, error: function (request, status, error) {
+            $(".modalColorHeader").css("background-color", "red");
+            $('.modalResponseTitle').text("Errore");
+            $('.modalResponseBody').text("Prenotazione non approvata!");
             $('.successModal').modal();
         }
     });

@@ -20,7 +20,8 @@
 
     <div class="row pt-4">
         <c:if test="${not empty mezzi}">
-            <table class="table table-hover">
+            <input type="text" class="form-control" id="filterMezziTable">
+            <table class="table table-hover" id="mezziTable">
                 <thead>
                 <tr>
                     <th scope="col">Targa</th>

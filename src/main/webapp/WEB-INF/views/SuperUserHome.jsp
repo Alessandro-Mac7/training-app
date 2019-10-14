@@ -51,7 +51,8 @@
 
                 <c:if test="${empty editCustomer}">
                     <c:if test="${not empty customers}">
-                        <table class="table table-hover">
+                        <input type="text" class="form-control" id="filterCustomerTable">
+                        <table class="table table-hover" id="customerTable">
                             <thead>
                             <tr>
                                 <th scope="col">Nome</th>
@@ -234,7 +235,7 @@
                                 <td>${prenotazione.data_fine}</td>
                                 <td>${prenotazione.utente.nome}&nbsp;${prenotazione.utente.cognome}</td>
                                 <td>${prenotazione.mezzo.modello}&ensp;${prenotazione.mezzo.targa}</td>
-                                <td><a href="" class="approvaButton"><i class="fas fa-thumbs-up"></i> Approva</a></td>
+                                <td><a href="" class="approvaButton" data-id="${prenotazione.id}" ><i class="fas fa-thumbs-up"></i> Approva</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
